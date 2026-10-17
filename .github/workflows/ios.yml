@@ -1,0 +1,27 @@
+name: iOS build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild build \
+            -project ios/PetArena.xcodeproj \
+            -scheme PetArena \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Check bundled game files
+        run: |
+          APP=$(find ~/Library/Developer/Xcode/DerivedData -name PetArena.app -path '*iphonesimulator*' | head -1)
+          ls -la "$APP"
+          test -f "$APP/Pet Arena (1).html"
+          test -f "$APP/LilitaOne-Regular.ttf"
+          test -f "$APP/Assets.car"
