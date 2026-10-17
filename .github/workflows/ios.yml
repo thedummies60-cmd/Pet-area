@@ -1,0 +1,53 @@
+name: iOS build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild build \
+            -workspace ios/PetArena.xcworkspace \
+            -scheme PetArena \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/sim \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Check bundled game files
+        run: |
+          APP="build/sim/Build/Products/Debug-iphonesimulator/PetArena.app"
+          ls -la "$APP"
+          test -f "$APP/Pet Arena (1).html"
+          test -f "$APP/LilitaOne-Regular.ttf"
+          test -f "$APP/Assets.car"
+
+      - name: Build for iPhone (unsigned)
+        run: |
+          xcodebuild build \
+            -workspace ios/PetArena.xcworkspace \
+            -scheme PetArena \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/device \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p build/ipa/Payload
+          cp -R build/device/Build/Products/Release-iphoneos/PetArena.app build/ipa/Payload/
+          cd build/ipa && zip -qry ../PetArena-unsigned.ipa Payload
+          ls -la ../PetArena-unsigned.ipa
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: PetArena-unsigned-ipa
+          path: build/PetArena-unsigned.ipa
