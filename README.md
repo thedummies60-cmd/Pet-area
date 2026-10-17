@@ -4,7 +4,7 @@ A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).
 
 ## iOS app
 
-`ios/PetArena.xcodeproj` is a SwiftUI app. It runs the game full screen in a `WKWebView`:
+`ios/PetArena.xcworkspace` (with the project `ios/PetArena.xcodeproj`) is a SwiftUI app. It runs the game full screen in a `WKWebView`:
 
 - It plays fully offline. The game HTML and the Lilita One font come bundled inside the app.
 - Your progress (trophies, coins, deck) is kept between launches.
@@ -13,7 +13,7 @@ A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).
 
 ### Run it on your iPhone
 
-1. You need a Mac with Xcode 16 or newer. Open `ios/PetArena.xcodeproj`.
+1. You need a Mac with Xcode 16 or newer. Open `ios/PetArena.xcworkspace`.
 2. Select the **PetArena** target, then open **Signing & Capabilities**.
    - Choose your **Team**. A free Apple ID works for testing on your own phone.
    - Change the **Bundle Identifier** (`com.petarena.game`) to one of your own, such as `com.yourname.petarena`.
@@ -27,4 +27,18 @@ A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).
 2. In Xcode choose **Product → Archive**, then click **Distribute App → App Store Connect**.
 3. Complete the listing in [App Store Connect](https://appstoreconnect.apple.com): screenshots, description, privacy details (the app collects no data) and age rating.
 
-Every push builds the app for the iOS Simulator in GitHub Actions (`.github/workflows/ios.yml`).
+### Build without a Mac
+
+GitHub Actions (`.github/workflows/ios.yml`) builds the app on every push. To get the build:
+
+1. Open the repo's **Actions** tab and click the latest **iOS build** run.
+2. Download **PetArena-unsigned-ipa** from the run's artifacts. It is a zip that contains `PetArena-unsigned.ipa`.
+
+The IPA is unsigned, so an iPhone will not install it as-is. A sideloading tool such as [Sideloadly](https://sideloadly.io) or [AltStore](https://altstore.io) can sign it with your Apple ID and install it from Windows or a Mac. With a free Apple ID the app stops working after 7 days, and you have to install it again.
+
+To compile locally from the command line:
+
+```sh
+xcodebuild build -workspace ios/PetArena.xcworkspace -scheme PetArena \
+  -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+```
