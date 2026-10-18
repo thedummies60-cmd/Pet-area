@@ -8,7 +8,7 @@ A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).
 
 - It plays fully offline. The game HTML and its fonts (Lilita One and Creepster) come bundled inside the APK.
 - Your progress (trophies, coins, deck) is kept between launches.
-- It uses `IMG_0266.png` as the app icon.
+- It uses `IMG_0286.png` (Halloween logo) as the app icon.
 - The build copies `Pet Arena (1).html` from the repo root and the fonts from `ios/PetArena/Web/`. When you change the game, rebuild the app and it picks up the change.
 
 ### Install the APK
@@ -16,7 +16,7 @@ A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).
 GitHub Actions (`.github/workflows/android.yml`) builds the APK on every push:
 
 1. Open the repo's **Actions** tab and click the latest **Android build** run.
-2. Download **PetArena-apk** from the run's artifacts. It is a zip that contains `PetArena.apk`.
+2. Download **PetArena.apk** from the run's artifacts.
 3. Copy `PetArena.apk` to your phone and open it. Android asks you to allow installs from that app (your browser or file manager) the first time.
 
 The APK is signed with a fixed debug key (`android/app/debug.keystore`), so it installs directly and each new build installs over the last one without losing your progress. To publish on Google Play, sign it with your own private release key.
@@ -35,7 +35,7 @@ The APK lands in `android/app/build/outputs/apk/release/`.
 
 - It plays fully offline. The game HTML and its fonts (Lilita One and Creepster) come bundled inside the app.
 - Your progress (trophies, coins, deck) is kept between launches.
-- It uses `IMG_0266.png` as the app icon.
+- It uses `IMG_0286.png` (Halloween logo) as the app icon.
 - The app loads `Pet Arena (1).html` straight from the repo root. When you change the game, rebuild the app and it picks up the change.
 
 ### Run it on your iPhone
@@ -59,7 +59,7 @@ The APK lands in `android/app/build/outputs/apk/release/`.
 GitHub Actions (`.github/workflows/ios.yml`) builds the app on every push. To get the build:
 
 1. Open the repo's **Actions** tab and click the latest **iOS build** run.
-2. Download **PetArena-unsigned-ipa** from the run's artifacts. It is a zip that contains `PetArena-unsigned.ipa`.
+2. Download **PetArena-unsigned.ipa** from the run's artifacts.
 
 The IPA is unsigned, so an iPhone will not install it as-is. A sideloading tool such as [Sideloadly](https://sideloadly.io) or [AltStore](https://altstore.io) can sign it with your Apple ID and install it from Windows or a Mac. With a free Apple ID the app stops working after 7 days, and you have to install it again.
 
