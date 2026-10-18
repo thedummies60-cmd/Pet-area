@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches the game's background colour so there is no flash while it loads. -->
+    <color name="game_background">#150A22</color>
+    <color name="icon_background">#0A1430</color>
+</resources>

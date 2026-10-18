@@ -1,12 +1,39 @@
 # Pet Arena
 
-A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).html`) or install it as an iPhone/iPad app.
+A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).html`), or install it as an Android app or an iPhone/iPad app.
+
+## Android app
+
+`android/` is an Android Studio project. It runs the game full screen in a `WebView`:
+
+- It plays fully offline. The game HTML and its fonts (Lilita One and Creepster) come bundled inside the APK.
+- Your progress (trophies, coins, deck) is kept between launches.
+- It uses `IMG_0266.png` as the app icon.
+- The build copies `Pet Arena (1).html` from the repo root and the fonts from `ios/PetArena/Web/`. When you change the game, rebuild the app and it picks up the change.
+
+### Install the APK
+
+GitHub Actions (`.github/workflows/android.yml`) builds the APK on every push:
+
+1. Open the repo's **Actions** tab and click the latest **Android build** run.
+2. Download **PetArena-apk** from the run's artifacts. It is a zip that contains `PetArena.apk`.
+3. Copy `PetArena.apk` to your phone and open it. Android asks you to allow installs from that app (your browser or file manager) the first time.
+
+The APK is signed with a fixed debug key (`android/app/debug.keystore`), so it installs directly and each new build installs over the last one without losing your progress. To publish on Google Play, sign it with your own private release key.
+
+To build it yourself, open `android/` in Android Studio, or run:
+
+```sh
+cd android && ./gradlew assembleRelease
+```
+
+The APK lands in `android/app/build/outputs/apk/release/`.
 
 ## iOS app
 
 `ios/PetArena.xcworkspace` (with the project `ios/PetArena.xcodeproj`) is a SwiftUI app. It runs the game full screen in a `WKWebView`:
 
-- It plays fully offline. The game HTML and the Lilita One font come bundled inside the app.
+- It plays fully offline. The game HTML and its fonts (Lilita One and Creepster) come bundled inside the app.
 - Your progress (trophies, coins, deck) is kept between launches.
 - It uses `IMG_0266.png` as the app icon.
 - The app loads `Pet Arena (1).html` straight from the repo root. When you change the game, rebuild the app and it picks up the change.

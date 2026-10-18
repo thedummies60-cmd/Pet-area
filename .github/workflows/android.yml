@@ -1,0 +1,36 @@
+name: Android build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build APK
+        working-directory: android
+        run: ./gradlew --no-daemon assembleRelease
+
+      - name: Check bundled game files
+        run: |
+          APK=android/app/build/outputs/apk/release/app-release.apk
+          unzip -l "$APK"
+          unzip -l "$APK" | grep -q "assets/Pet Arena (1).html"
+          unzip -l "$APK" | grep -q "assets/LilitaOne-Regular.ttf"
+          unzip -l "$APK" | grep -q "assets/Creepster-Regular.ttf"
+          mv "$APK" PetArena.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PetArena-apk
+          path: PetArena.apk

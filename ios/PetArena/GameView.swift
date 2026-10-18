@@ -79,7 +79,11 @@ final class BundleSchemeHandler: NSObject, WKURLSchemeHandler {
     static let startURL = URL(string: "\(scheme)://game/index.html")!
 
     private static let gameFile = "Pet Arena (1)"
-    private static let fontFile = "LilitaOne-Regular.ttf"
+    /// Bundled copies of the Google Fonts the game uses, keyed by font family.
+    private static let fonts = [
+        ("Lilita One", "LilitaOne-Regular.ttf"),
+        ("Creepster", "Creepster-Regular.ttf"),
+    ]
 
     func webView(_ webView: WKWebView, start task: WKURLSchemeTask) {
         guard let url = task.request.url, let resource = Self.resource(for: url.path) else {
@@ -106,19 +110,22 @@ final class BundleSchemeHandler: NSObject, WKURLSchemeHandler {
                   let html = try? String(contentsOf: url, encoding: .utf8)
             else { return nil }
             return (Data(offlineFont(html).utf8), "text/html; charset=utf-8")
-        case "/\(fontFile)":
-            guard let url = Bundle.main.url(forResource: fontFile, withExtension: nil),
+        default:
+            let name = String(path.dropFirst())
+            guard fonts.contains(where: { $0.1 == name }),
+                  let url = Bundle.main.url(forResource: name, withExtension: nil),
                   let data = try? Data(contentsOf: url)
             else { return nil }
             return (data, "font/ttf")
-        default:
-            return nil
         }
     }
 
-    /// Swaps the Google Fonts stylesheet for the bundled copy of Lilita One.
+    /// Swaps the Google Fonts stylesheet for the bundled font files.
     private static func offlineFont(_ html: String) -> String {
-        let localFont = "<style>@font-face{font-family:'Lilita One';src:url('\(fontFile)') format('truetype');font-display:swap}</style>"
+        let faces = fonts.map { family, file in
+            "@font-face{font-family:'\(family)';src:url('\(file)') format('truetype');font-display:swap}"
+        }
+        let localFont = "<style>\(faces.joined())</style>"
         return html.replacingOccurrences(
             of: #"<link[^>]*fonts\.googleapis\.com[^>]*>"#,
             with: localFont,

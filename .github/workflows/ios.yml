@@ -27,6 +27,7 @@ jobs:
           ls -la "$APP"
           test -f "$APP/Pet Arena (1).html"
           test -f "$APP/LilitaOne-Regular.ttf"
+          test -f "$APP/Creepster-Regular.ttf"
           test -f "$APP/Assets.car"
 
       - name: Build for iPhone (unsigned)
