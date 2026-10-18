@@ -12,6 +12,7 @@
 		AA0000000000000000000023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000013 /* Assets.xcassets */; };
 		AA0000000000000000000025 /* Pet Arena (1).html in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000015 /* Pet Arena (1).html */; };
 		AA0000000000000000000026 /* LilitaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000016 /* LilitaOne-Regular.ttf */; };
+		AA0000000000000000000027 /* Creepster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000018 /* Creepster-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,8 @@
 		AA0000000000000000000015 /* Pet Arena (1).html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "Pet Arena (1).html"; path = "../Pet Arena (1).html"; sourceTree = SOURCE_ROOT; };
 		AA0000000000000000000016 /* LilitaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LilitaOne-Regular.ttf"; sourceTree = "<group>"; };
 		AA0000000000000000000017 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		AA0000000000000000000018 /* Creepster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Creepster-Regular.ttf"; sourceTree = "<group>"; };
+		AA0000000000000000000019 /* OFL-Creepster.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OFL-Creepster.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				AA0000000000000000000015 /* Pet Arena (1).html */,
 				AA0000000000000000000016 /* LilitaOne-Regular.ttf */,
 				AA0000000000000000000017 /* OFL.txt */,
+				AA0000000000000000000018 /* Creepster-Regular.ttf */,
+				AA0000000000000000000019 /* OFL-Creepster.txt */,
 			);
 			path = Web;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 				AA0000000000000000000023 /* Assets.xcassets in Resources */,
 				AA0000000000000000000025 /* Pet Arena (1).html in Resources */,
 				AA0000000000000000000026 /* LilitaOne-Regular.ttf in Resources */,
+				AA0000000000000000000027 /* Creepster-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
