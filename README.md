@@ -8,7 +8,7 @@ A card-battle game for your phone. You can play it in a browser (`Pet Arena (1).
 
 - It plays fully offline. The game HTML and its fonts (Lilita One and Creepster) come bundled inside the APK.
 - Your progress (trophies, coins, deck) is kept between launches.
-- It uses `IMG_0266.png` as the app icon.
+- It uses `IMG_0286.png` (Halloween logo) as the app icon.
 - The build copies `Pet Arena (1).html` from the repo root and the fonts from `ios/PetArena/Web/`. When you change the game, rebuild the app and it picks up the change.
 
 ### Install the APK
@@ -35,7 +35,7 @@ The APK lands in `android/app/build/outputs/apk/release/`.
 
 - It plays fully offline. The game HTML and its fonts (Lilita One and Creepster) come bundled inside the app.
 - Your progress (trophies, coins, deck) is kept between launches.
-- It uses `IMG_0266.png` as the app icon.
+- It uses `IMG_0286.png` (Halloween logo) as the app icon.
 - The app loads `Pet Arena (1).html` straight from the repo root. When you change the game, rebuild the app and it picks up the change.
 
 ### Run it on your iPhone
